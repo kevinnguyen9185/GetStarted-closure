@@ -1,41 +1,31 @@
-// Import stylesheets
-import './style.css';
 
-function greeting(msg) {
-  return function who(name) {
-    console.log(`${msg} - ${name}`);
-  }
+
+
+function checkWithoutClosure(staringUrl, toCompareUrl){
+  return staringUrl === toCompareUrl;
 }
 
-var hello = greeting('hello');
+(function Widget2(){
+  var startingUrl = '/home';
 
-hello('kevin');
-hello('Grace');
+  console.log(checkWithoutClosure(startingUrl, '/home'));
+  console.log(checkWithoutClosure(startingUrl, '/home1'));
+  console.log(checkWithoutClosure(startingUrl, '/home2'));
+})();
 
-function counter(step=1) {
-  var count = 1;
-  return function cal() {
-    count += step;
-    return count;
-  }
-}
 
-var inc1 = counter(1);
-console.log(inc1());
-console.log(inc1());
+//==============================================
 
-var inc12 = counter(1);
-console.log(inc12());
+// function checkWithClosure(startingUrl) {
+//   return function(toCompareUrl) {
+//     return startingUrl === toCompareUrl;
+//   }
+// }
 
-var b1 = document.getElementById('b1');
-var b2 = document.getElementById('b2');
-var b3 = document.getElementById('b3');
+// (function Widget1(){
+//   var checkHomePage = checkWithClosure('/home');
 
-var buttons = [b1, b2, b3];
-
-for(let i = 0; i<buttons.length ; i ++) {
-  buttons[i].addEventListener('click', function onClick() {
-    console.log(`click on button ${i}`);
-  });
-  console.log(i);
-}
+//   console.log(checkHomePage('/home'));
+//   console.log(checkHomePage('/home1'));
+//   console.log(checkHomePage('/home2'));
+// })();
